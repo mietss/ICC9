@@ -27,15 +27,15 @@ int main(void){
     AudioData* playlist = (AudioData*)malloc(playlistLen * sizeof(AudioData));
     int run = 1;
     char* curLine = malloc(180 * sizeof(char));
-    char audioName[100];
-    char creatorName[30];
-    char audioType[8];
+    char audioName[100] = "\0";
+    char creatorName[30] = "\0";
+    char audioType[8] = "\0";
 
     while (run) {
         fgets(curLine, 180, stdin);
 
         if (strncmp(curLine, "A", 1) == 0) {
-            sscanf("A %s %s %s", audioType, audioName, creatorName);
+            sscanf(curLine, "A %s %s %s", audioType, audioName, creatorName);
             if (A(playlist, &playlistLen, *audioType, audioName, creatorName) == 0) {
                 break;
             }
@@ -43,13 +43,13 @@ int main(void){
             while (getchar() != '\n'){}
         }
         else if (strncmp(curLine, "P", 1) == 0) {
-            sscanf("P %s", audioName);
+            sscanf(curLine, "P %s", audioName);
             P(playlist, playlistLen, audioName);
 
             while (getchar() != '\n'){}
         }
         else if (strncmp(curLine, "R", 1) == 0) {
-            sscanf("R %s", audioName);
+            sscanf(curLine, "R %s", audioName);
             R(playlist, &playlistLen, audioName);
         }
         else if (strncmp(curLine, "E", 1) == 0) {
