@@ -64,7 +64,7 @@ int main(void){
 }
 
 int A(AudioData *playlist, int *playlistLen, AudioType type, char *name, char *creatorName) {
-    *playlistLen++;
+    *playlistLen += 1;
     AudioData* temp = (AudioData*)realloc(playlist, *playlistLen * sizeof(AudioData));
     if (temp == NULL)
     {
@@ -107,7 +107,7 @@ void R(AudioData* playlist, int* playLen, char* name){
             break;
             }
         }
-    *playLen--;
+    *playLen += 1;
 }
 
 
